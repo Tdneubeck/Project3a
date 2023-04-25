@@ -6,7 +6,9 @@
     <form method="post">
         <label for="symbol">Choose Symbol</label>
         <select class = "symbol" id="symbol" name="symbol">
-            <option value="GOOGL">GOOGL</option>
+            {% for symbol in symbol_list %}
+               <option value="{{ symbol }}">{{ symbol }}</option>
+            {% endfor %}
         </select>
         <br>
         <label for="chart_type">Chart Type</label>
@@ -34,8 +36,10 @@
 
         <button type="submit">Submit</button>
     </form>
-    <div id="chart">
+    {% if chart %}
+     <div id="chart">
         <embed type="image/svg+xml" src= {{ chart|safe }} />
      </div>
+     {% endif %}
 
 {% endblock %}

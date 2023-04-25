@@ -115,28 +115,27 @@ def generateGraph(stockSymbol, chartType, timeSeries, data, startDate, endDate):
     closeFloat = [float(item) for item in close]
 
     if chart == 1:
-        bar = pygal.Bar(x_label_rotation=90)
-        bar.title = stock
-        bar.x_labels = map(str, dateList)
-        bar.add('Open', openFloat)
-        bar.add('High', highFloat)
-        bar.add('Low', lowFloat)
-        bar.add('Close', closeFloat)
-        chart = bar.render_response()
-        return chart
+        chart = pygal.Bar(x_label_rotation=90)
+        chart.title = stock
+        chart.x_labels = map(str, dateList)
+        chart.add('Open', openFloat)
+        chart.add('High', highFloat)
+        chart.add('Low', lowFloat)
+        chart.add('Close', closeFloat)
+        return chart.render_data_uri
     
 
     if chart == 2:
-        line = pygal.Line(x_label_rotation=90)
-        line.title = stock
-        line.x_labels = map(str, dateList)
-        line.add('Open', openFloat)
-        line.add('High', highFloat)
-        line.add('Low', lowFloat)
-        line.add('Close', closeFloat)
-        chart = line.render_response()
-        return chart
-    return chart
+        chart = pygal.Line(x_label_rotation=90)
+        chart.title = stock
+        chart.x_labels = map(str, dateList)
+        chart.add('Open', openFloat)
+        chart.add('High', highFloat)
+        chart.add('Low', lowFloat)
+        chart.add('Close', closeFloat)
+        chart.render_data_uri()
+        return chart.render_data_uri()
+    
         
 def main(symbol,chart_t,tseries, startdate,enddate):
 
